@@ -31,8 +31,12 @@ public class FirstPersonAudio : MonoBehaviour
 
     AudioSource[] MovingAudios => new AudioSource[] { stepAudio, runningAudio, crouchedAudio };
 
+	private void Start()
+	{
+        Physics.gravity = new Vector3(Physics.gravity.x * 1, Physics.gravity.y * 4, Physics.gravity.z * 1);
+	}
 
-    void Reset()
+	void Reset()
     {
         // Setup stuff.
         character = GetComponentInParent<FirstPersonMovement>();
