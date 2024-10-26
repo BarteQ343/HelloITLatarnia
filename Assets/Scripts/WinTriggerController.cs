@@ -22,5 +22,6 @@ public class WinTriggerController : MonoBehaviour
 	{
 		EndScreen.SetActive(true);
 		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
 	}
 }

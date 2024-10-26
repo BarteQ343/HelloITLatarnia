@@ -10,6 +10,12 @@ public class HealthController : MonoBehaviour
 	private BoxCollider DeathTrigger;
 	[SerializeField]
 	private GameObject LevelStartPoint;
+	[SerializeField]
+	private GameObject deathBackground;
+	[SerializeField]
+	private GameObject endBackground;
+	[SerializeField]
+	private HealthBar healthBar;
 	Vector3 LevelStartPointPos;
 	Rigidbody rb;
 	int triggerCounter = 0;
@@ -35,6 +41,7 @@ public class HealthController : MonoBehaviour
 			{
 				Respawn();
 			}
+			ShowDeathMessage();
 		} else if (rb.constraints == RigidbodyConstraints.FreezeAll && PlayerHealth > 0) 
 		{
 			rb.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -45,10 +52,10 @@ public class HealthController : MonoBehaviour
 	{
 		PlayerHealth = 100;
 		transform.position = LevelStartPointPos;
-		//healthBar.SetHealth(100);
-		//healthBar.SetHealthValue((int)PlayerHealth, (int)maxHealth);
-		//DeathBackground.ResetTrigger("Start");
-		//DeathBackground.SetTrigger("End");
+		healthBar.SetHealth(100);
+		healthBar.SetHealthValue((int)PlayerHealth, 100);
+		endBackground.SetActive(false);
+		deathBackground.SetActive(false);
 		Cursor.visible = false;
 	}
 
@@ -57,8 +64,8 @@ public class HealthController : MonoBehaviour
 		if (other.GetComponent<BoxCollider>() == DeathTrigger)
 		{
 			PlayerHealth = 0;
-			//healthBar.SetHealth(0);
-			//healthBar.SetHealthValue((int)PlayerHealth, (int)maxHealth);
+			healthBar.SetHealth(0);
+			healthBar.SetHealthValue((int)PlayerHealth, 100);
 			Debug.Log("Ded");
 		}
 		if (other.CompareTag("Hurtbox"))
@@ -68,6 +75,7 @@ public class HealthController : MonoBehaviour
 			{
 				isTakingDamage = true;
 				StartCoroutine(TakeDamage());
+				StopCoroutine(HealDamage());
 			}
 		}
 	}
@@ -81,6 +89,7 @@ public class HealthController : MonoBehaviour
 			{
 				isTakingDamage = false;
 				StopCoroutine(TakeDamage());
+				StartCoroutine(HealDamage());
 			}
 		}
 	}
@@ -92,17 +101,34 @@ public class HealthController : MonoBehaviour
 			for (float timer = 0; timer < 1; timer += Time.deltaTime)
 				yield return 0;
 
-			PlayerHealth -= 1;
+			PlayerHealth -= 10; 
+			healthBar.SetHealth((int)PlayerHealth);
+			healthBar.SetHealthValue((int)PlayerHealth, 100);
 			seconds++;
 			print("Stopped");
 		}
 	}
-	
-	/*public void ShowDeathMessage()
+	IEnumerator HealDamage()
 	{
-		DeathScreen.SetActive(true);
-		DeathBackground.ResetTrigger("End");
-		DeathBackground.SetTrigger("Start");
-		Cursor.visible = true;
-	}*/
+		int seconds = 0;
+		while (isTakingDamage == false)
+		{
+			for (float timer = 0; timer < 1; timer += Time.deltaTime)
+				yield return 0;
+			if (PlayerHealth < 100)
+			{
+				PlayerHealth += 2;
+			}
+			healthBar.SetHealth((int)PlayerHealth);
+			healthBar.SetHealthValue((int)PlayerHealth, 100);
+			seconds++;
+			print("Stopped");
+		}
+	}
+
+	public void ShowDeathMessage()
+	{
+		deathBackground.SetActive(true);
+		Cursor.lockState = CursorLockMode.None;
+	}
 }
