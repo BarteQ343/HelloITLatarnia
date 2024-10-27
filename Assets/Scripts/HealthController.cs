@@ -33,7 +33,7 @@ public class HealthController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		print(PlayerHealth);
+		//print(PlayerHealth);
 		if (PlayerHealth <= 0)
 		{
 			rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -57,6 +57,7 @@ public class HealthController : MonoBehaviour
 		endBackground.SetActive(false);
 		deathBackground.SetActive(false);
 		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -130,5 +131,6 @@ public class HealthController : MonoBehaviour
 	{
 		deathBackground.SetActive(true);
 		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 }

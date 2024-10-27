@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hurtbox
+  - InitialLight
+  - Switch
+  - Switch2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Switches
   - Water
   - UI
   - 
