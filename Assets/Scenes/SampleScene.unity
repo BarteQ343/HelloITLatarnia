@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -3461,16 +3461,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7707168418463022746, guid: fb10639dc3cc90b4e9fdb6e023b575da, type: 3}
       propertyPath: m_fontSize
-      value: 57.25
+      value: 63.95
       objectReference: {fileID: 0}
     - target: {fileID: 7707168418463022746, guid: fb10639dc3cc90b4e9fdb6e023b575da, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 289a4049b15235e4f8806684141b37bb, type: 2}
     - target: {fileID: 7707168418463022746, guid: fb10639dc3cc90b4e9fdb6e023b575da, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 5165891195321397874, guid: 289a4049b15235e4f8806684141b37bb, type: 2}
+    - target: {fileID: 7707168418463022746, guid: fb10639dc3cc90b4e9fdb6e023b575da, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8565521609152206346, guid: fb10639dc3cc90b4e9fdb6e023b575da, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.70140755
